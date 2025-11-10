@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import 'features/auth/bloc/auth_bloc.dart';
+import 'features/onboarding/welcome_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => AuthBloc())],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +20,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily:'inter'),
-      home: ,
+      theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
+      home: WelcomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
